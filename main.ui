@@ -196,7 +196,7 @@
           </widget>
          </item>
          <item row="5" column="0">
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="CustomProcessEnabled">
            <property name="text">
             <string>Custom process</string>
            </property>
@@ -218,61 +218,6 @@
           <widget class="QPushButton" name="GenerateJinja">
            <property name="text">
             <string>Génerer le template</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="gridLayoutWidget_5">
-        <property name="geometry">
-         <rect>
-          <x>190</x>
-          <y>160</y>
-          <width>201</width>
-          <height>131</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="ChiaLayout">
-         <item row="4" column="0">
-          <widget class="QLineEdit" name="LauncherId">
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <property name="placeholderText">
-            <string>launcher_id</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QPushButton" name="LoadCrt">
-           <property name="text">
-            <string>Chemin du certificat ssl</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QPushButton" name="LoadKey">
-           <property name="text">
-            <string>Chemin de la clef ssl</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="gridLayoutWidget_6">
-        <property name="geometry">
-         <rect>
-          <x>400</x>
-          <y>20</y>
-          <width>251</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QPushButton" name="SmiBinPath">
-           <property name="text">
-            <string>Chemin du binaire SMI</string>
            </property>
           </widget>
          </item>
@@ -329,27 +274,112 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="gridLayoutWidget_8">
+       <widget class="QWidget" name="ChiaWidget" native="true">
         <property name="geometry">
          <rect>
-          <x>660</x>
-          <y>20</y>
-          <width>160</width>
-          <height>80</height>
+          <x>190</x>
+          <y>160</y>
+          <width>209</width>
+          <height>129</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="CustomProcessLayout">
-         <item row="0" column="0">
-          <widget class="QLineEdit" name="ProcessInput">
-           <property name="alignment">
-            <set>Qt::AlignJustify|Qt::AlignVCenter</set>
-           </property>
-           <property name="placeholderText">
-            <string>process_1,process_2</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QWidget" name="gridLayoutWidget_5">
+         <property name="geometry">
+          <rect>
+           <x>-1</x>
+           <y>-1</y>
+           <width>211</width>
+           <height>131</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="LoadKey">
+            <property name="text">
+             <string>Chemin de la clef ssl</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="LoadCrt">
+            <property name="text">
+             <string>Chemin du certificat ssl</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLineEdit" name="LauncherId">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="placeholderText">
+             <string>launcher_id</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="SMIWidget" native="true">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>20</y>
+          <width>261</width>
+          <height>49</height>
+         </rect>
+        </property>
+        <widget class="QWidget" name="gridLayoutWidget_6">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>0</y>
+           <width>251</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="SmiBinPath">
+            <property name="text">
+             <string>Chemin du binaire SMI</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="CustomProcessWidget" native="true">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>70</y>
+          <width>171</width>
+          <height>78</height>
+         </rect>
+        </property>
+        <widget class="QWidget" name="gridLayoutWidget_8">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>161</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="CustomProcessLayout">
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="ProcessInput">
+            <property name="alignment">
+             <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+            </property>
+            <property name="placeholderText">
+             <string>process_1,process_2</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="APropos">
