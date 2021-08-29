@@ -1,0 +1,3 @@
+{
+    "files": ["widget.py","ui_mainwindow.py","Jinja.py","main.ui","telegraf.conf.jinja"]
+}
