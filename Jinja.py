@@ -28,12 +28,11 @@ class JinjaMaker:
     def __init__(self):
         pass
 
-
     def SetEsUsername(self, username):
         self.es_username = username
 
     def SetEsPassword(self, password):
-        self.es_username = password
+        self.es_password = password
 
     def SetSmiBinPath(self):
         self.nvidia_smi_bin_path = QFileDialog.getOpenFileName()

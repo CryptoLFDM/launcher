@@ -43,7 +43,7 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker):
 
     def FillJinjaTemplate(self):
         self.SetEsUsername(self.main.UsernameEs.text())
-        self.SetEsPassword(self.main.Password.text())
+        self.SetEsPassword(self.main.PasswordEs.text())
         self.SetCustomName(self.main.CustomName.text())
         if self.GetCollectChiaEnable():
             self.SetLaucherId(self.main.LauncherId.text())
