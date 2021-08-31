@@ -14,7 +14,8 @@ class JinjaMaker:
         ]
     name = None
     telegraf_log_file_path = None
-    os_is_windows = False
+    os_is_windows = True
+    os_is_linux = False
     custom_process_enabled = False
     process_list_to_harvest = ["telegraf"]
     nvidia_smi_enabled = False
@@ -49,11 +50,17 @@ class JinjaMaker:
     def SetLaucherId(self, launcher_id):
         self.launcher_id = launcher_id
 
-    def SetOsIsWindows(self, state):
-        if (Qt.Checked == state):
-            self.os_is_windows = True
+    def SetOsIsWindows(self, radio):
+        if radio:
+            self.os_windows = True
         else:
-            self.os_is_windows = False
+            self.os_windows = False
+
+    def SetOsIsLinux(self, radio):
+        if radio:
+            self.os_linux = True
+        else:
+            self.os_linux = False
 
     def SetSmiEnable(self, state):
         if (Qt.Checked == state):
@@ -96,7 +103,25 @@ class JinjaMaker:
     def GenerateTemplate(self):
         env = Environment(loader=FileSystemLoader('.'))
         template = env.get_template('telegraf.conf.jinja')
-        print(self.es_username)
-        output_from_parsed_template = template.render(es_username=self.es_username)
+        data_template = {
+            "es_username": self.es_username,
+            "es_password": self.es_password,
+            "es_host_list": self.es_host_list,
+            "name": self.name,
+            "telegraf_log_file_path": self.telegraf_log_file_path,
+            "os_is_windows": self.os_is_windows,
+            "os_is_linux": self.os_is_linux,
+            "custom_process_enabled": self.custom_process_enabled,
+            "process_list_to_harvest": self.process_list_to_harvest,
+            "nvidia_smi_enabled": self.nvidia_smi_enabled,
+            "nvidia_smi_bin_path": self.nvidia_smi_bin_path,
+            "chia_collect_info_enabled": self.nvidia_smi_bin_path,
+            "launcher_id": self.launcher_id,
+            "chia_private_full_node_crt_path": self.chia_private_full_node_crt_path,
+            "chia_private_full_node_key_path": self.chia_private_full_node_key_path,
+            "t_rex_enabled": self.t_rex_enabled,
+            "api_lfdm": self.api_lfdm,
+            }
+        output_from_parsed_template = template.render(data_template)
         with open("telegraf.conf", "w") as fh:
             fh.write(output_from_parsed_template)

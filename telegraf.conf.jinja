@@ -1,7 +1,9 @@
 # Global tags can be specified here in key="value" format.
 [global_tags]
+    {% if launcher_id is defined  and lancher_id | length > 1 %}
     launcher_id = "{{ launcher_id }}"
-    {% if name is defined %}
+    {% endif %}
+    {% if name is defined | length > 1  %}
     name = "{{ name }}"
     {% endif %}
 
@@ -35,7 +37,7 @@
 
 # Configuration for Elasticsearch to send metrics to.
 [[outputs.elasticsearch]]
-    urls = [ {{ es_host_list }} ] # required.
+    urls = {{ es_host_list }}
     timeout = "5s"
     enable_sniffer = false
     health_check_interval = "10s"
@@ -78,7 +80,7 @@
             "Virtual Bytes",
             "Working Set"
         ]
-        Instances = ["{{ process_list_to_harvest }}"]
+        Instances = {{ process_list_to_harvest }}
         Measurement = "win_proc"
 
     [[inputs.win_perf_counters.object]]
@@ -280,4 +282,32 @@
     ]
     method = "GET"
     data_format = "json"
+{% endif %}
+
+{% if os_is_linux %}
+# Read metrics about cpu usage
+[[inputs.cpu]]
+  percpu = false
+  totalcpu = true
+  collect_cpu_time = false
+  report_active = true
+
+[[inputs.diskio]]
+  devices = ["sda2", "md0", "nvme0n1", "nvme1n1", "sdb1", "sdc1", "sdd1", "sde1", "sdf1", "sdg1", "sdh1", "sdi1", "md1", "sdj1", "sdk1", "sdl1", "sdm1", "md2", "sdn1", "md3", "sdo1", "md1", "md4", "sdp1", "sdq1"]
+  device_tags = ["ID_MODEL", "ID_REVISION", "ID_FS_LABEL"]
+
+[[inputs.disk]]
+  interval = "10m"
+  ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
+
+[[inputs.mem]]
+
+[[inputs.temp]]
+
+[[inputs.hddtemp]]
+
+[[inputs.procstat]]
+  pattern = "chia_plot"
+  process_name = "chia-plot"
+
 {% endif %}

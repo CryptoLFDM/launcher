@@ -27,6 +27,9 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker):
         self.main.TRexEnabled.stateChanged.connect(self.SetTrexEnable)
         self.main.CustomProcessEnabled.stateChanged.connect(self.DisplayCustomProcessWidget)
 
+        self.main.windowsRadio.toggled.connect(self.SetOsIsWindows)
+        self.main.LinuxRadio.toggled.connect(self.SetOsIsLinux)
+
         self.main.GenerateJinja.clicked.connect(self.FillJinjaTemplate)
 
     def DisplayChiaWidget(self, state):
