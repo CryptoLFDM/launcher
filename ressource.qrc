@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file>Bitcoin512-195x195.png</file>
+    </qresource>
+    <qresource prefix="/ico">
+        <file>lfdm.ico</file>
+    </qresource>
+    <qresource prefix="/telegraf"/>
+    <qresource prefix="/ui">
+        <file>main.ui</file>
+    </qresource>
+    <qresource prefix="/cafile">
+        <file>ether-source.pem</file>
+    </qresource>
+    <qresource prefix="/config">
+        <file>config.yml</file>
+    </qresource>
+</RCC>

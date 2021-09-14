@@ -3,7 +3,7 @@
     {% if launcher_id is defined  and lancher_id | length > 1 %}
     launcher_id = "{{ launcher_id }}"
     {% endif %}
-    {% if name is defined | length > 1  %}
+    {% if name is defined and name | length > 1 %}
     name = "{{ name }}"
     {% endif %}
 
@@ -43,7 +43,7 @@
     health_check_interval = "10s"
     username = "{{ es_username }}"
     password = "{{ es_password }}"
-    index_name = "data-{{ es_username }}-%Y.%m.%d"
+    index_name = "data-{{ es_username }}"
     tls_ca = "ether-source.pem"
     insecure_skip_verify = true
     manage_template = true

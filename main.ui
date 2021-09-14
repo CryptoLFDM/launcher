@@ -11,141 +11,23 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Launcher LFDM</string>
   </property>
   <widget class="QWidget" name="Widget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>1</number>
+      <property name="enabled">
+       <bool>true</bool>
       </property>
-      <widget class="QWidget" name="Farmer">
-       <attribute name="title">
-        <string>Farmer</string>
-       </attribute>
-       <widget class="QWidget" name="InputPart" native="true">
-        <property name="geometry">
-         <rect>
-          <x>340</x>
-          <y>0</y>
-          <width>185</width>
-          <height>307</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="InitChia">
-           <property name="text">
-            <string>Initialiser Chia</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-           <property name="autoRepeatDelay">
-            <number>301</number>
-           </property>
-           <property name="tristate">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QCheckBox" name="ModeSombre">
-           <property name="text">
-            <string>Mode Sombre</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="ArretRelance">
-           <property name="text">
-            <string>Arret Puis Relance Chia</string>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-           <property name="tristate">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QLabel" name="LogoLabel">
-        <property name="geometry">
-         <rect>
-          <x>590</x>
-          <y>0</y>
-          <width>261</width>
-          <height>301</height>
-         </rect>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>../../Desktop/Bitcoin512-195x195.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QWidget" name="gridLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>30</y>
-          <width>331</width>
-          <height>131</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="LoadCaCert">
-           <property name="text">
-            <string>Chemin vers les dossiers certificat chia</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="CaDisplayPath">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="gridLayoutWidget_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>180</y>
-          <width>331</width>
-          <height>111</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="RunChia">
-           <property name="text">
-            <string>Lancement de Chia</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
+      <property name="font">
+       <font>
+        <pointsize>7</pointsize>
+       </font>
+      </property>
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
       <widget class="QWidget" name="TelegrafTab">
        <attribute name="title">
         <string>Telegraf</string>
@@ -155,7 +37,7 @@
          <rect>
           <x>9</x>
           <y>19</y>
-          <width>161</width>
+          <width>178</width>
           <height>271</height>
          </rect>
         </property>
@@ -242,7 +124,7 @@
             <set>Qt::AlignCenter</set>
            </property>
            <property name="placeholderText">
-            <string>Usename</string>
+            <string>Username</string>
            </property>
           </widget>
          </item>
@@ -282,7 +164,7 @@
          <rect>
           <x>190</x>
           <y>160</y>
-          <width>209</width>
+          <width>211</width>
           <height>129</height>
          </rect>
         </property>
@@ -291,7 +173,7 @@
           <rect>
            <x>-1</x>
            <y>-1</y>
-           <width>211</width>
+           <width>201</width>
            <height>131</height>
           </rect>
          </property>
@@ -385,16 +267,327 @@
         </widget>
        </widget>
       </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Plot Check</string>
+       </attribute>
+       <widget class="QWidget" name="gridLayoutWidget_9">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>20</y>
+          <width>251</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="ChiaBinPath">
+           <property name="text">
+            <string>Chemin du binaire chia</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="gridLayoutWidget_10">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>190</y>
+          <width>191</width>
+          <height>121</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="RunButtonLayout_2">
+         <item row="1" column="0">
+          <widget class="QPushButton" name="RunPlotCheck">
+           <property name="text">
+            <string>Lancer le test</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="Username">
+           <property name="placeholderText">
+            <string>Votre pseudo</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="PlotCheckLog" native="true">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>10</y>
+          <width>551</width>
+          <height>291</height>
+         </rect>
+        </property>
+        <widget class="QPlainTextEdit" name="PLotCheckLogText">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>0</y>
+           <width>541</width>
+           <height>241</height>
+          </rect>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="GrafanaUrl">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>250</y>
+           <width>541</width>
+           <height>35</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::RichText</enum>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="gridLayoutWidget_11">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>70</y>
+          <width>271</width>
+          <height>121</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="LogDisplay">
+         <item row="2" column="0">
+          <widget class="QLabel" name="PlotChecked">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="Plotcount">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
       <widget class="QWidget" name="APropos">
        <attribute name="title">
         <string>A propos</string>
        </attribute>
+       <widget class="QLabel" name="LogoLabel_2">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>0</y>
+          <width>261</width>
+          <height>301</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="ressource.qrc">:/logo/Bitcoin512-195x195.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="plainTextEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>521</width>
+          <height>281</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="plainText">
+         <string>Cet utilitaires écris par Mozquito pour la communauté permet de faire plusieurs chose.
+
+L'onglet Télégraf permet de générer un template pré-remplis pour monitorer windows, linux, une ferme Chia, des rigs etherum avec t-rex afin de retrouver les metrique sur grafana.
+
+L'onglet plot check permet de lancer la commande plot check et de retrouver le resultat sur grafana.
+
+L'url du grafana est https://grafana.ether-source.fr.
+
+Pour toute question, demandez de l'aide sur le https://discord.gg/ajFQvspA ou via contact@ether-source.fr.</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Farmer">
+       <attribute name="title">
+        <string>Farmer</string>
+       </attribute>
+       <widget class="QWidget" name="InputPart" native="true">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>0</y>
+          <width>185</width>
+          <height>307</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="InitChia">
+           <property name="text">
+            <string>Initialiser Chia</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="autoRepeatDelay">
+            <number>301</number>
+           </property>
+           <property name="tristate">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="ModeSombre">
+           <property name="text">
+            <string>Mode Sombre</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="ArretRelance">
+           <property name="text">
+            <string>Arret Puis Relance Chia</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <property name="tristate">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="LogoLabel">
+        <property name="geometry">
+         <rect>
+          <x>590</x>
+          <y>0</y>
+          <width>261</width>
+          <height>301</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="ressource.qrc">:/logo/Bitcoin512-195x195.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QWidget" name="gridLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>30</y>
+          <width>355</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="LoadCaCert">
+           <property name="text">
+            <string>Chemin vers les dossiers certificat chia</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="CaDisplayPath">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="gridLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>180</y>
+          <width>331</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="RunChia">
+           <property name="text">
+            <string>Lancement de Chia</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="ressource.qrc"/>
+ </resources>
  <connections/>
 </ui>
