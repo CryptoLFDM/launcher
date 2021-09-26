@@ -18,7 +18,7 @@ Elasticsearch est une sorte de base de données que nous utilisons pour stocker 
 
 ### Telegraf c'est quoi ?
 
-[![N|telegraf](https://myvmworld.fr/wp-content/uploads/2017/12/telegraf.png)](https://myvmworld.fr/wp-content/uploads/2017/12/telegraf.png )
+[![N|telegraf](https://myvmworld.fr/wp-content/uploads/2017/12/telegraf.png)](https://www.influxdata.com/time-series-platform/telegraf/)
 
 Telegraf est ce que l'on apelle un collecteur. Il permet de recolter des informations de métrologies ou des informations custom.
 Nous l'utilisons pour récuperer les métriques systeme / chia / T-rex. Tout est gerée via un templates. 
