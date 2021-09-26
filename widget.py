@@ -3,6 +3,7 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import Qt, QProcess, QFile, QIODevice, QTextStream
 from PySide6.QtGui import QIcon
 
+
 try:
     from PySide2.QtWinExtras import QtWin
     myappid = 'lfdm.ether-source.distributed'
@@ -21,6 +22,7 @@ from datetime import datetime
 import time
 import pytz
 import yaml
+import ressources
 
 
 class GuiLogger(logging.Handler):
@@ -87,7 +89,7 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         if fd.open(QIODevice.ReadOnly | QFile.Text):
             cred = yaml.safe_load(QTextStream(fd).readAll())
 
-        self.es_connection("plot_check_user", "EvVL@f$QE8Dbv4!5", 'https://grafana.ether-source.fr')
+        self.es_connection(cred['es_username'], cred['es_password'], 'https://grafana.ether-source.fr')
         date_regex = r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}.\d{2}.\d{3}'
         cleaned_string = re.sub(date_regex, '', s)
         cleaned_string = cleaned_string.replace("chia.plotting.plot_tools", "")
@@ -163,10 +165,10 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
             QProcess.Starting: 'Starting',
             QProcess.Running: 'Running',
         }
-        state_name = states[state
+        self.message("Processus plot check: {}".format(states[state]))
 
     def process_finished(self):
-#        self.message("Process finished.")
+        self.message("Plot check terminé ! :)")
         self.p = None
 
     def DisplayChiaWidget(self, state):
