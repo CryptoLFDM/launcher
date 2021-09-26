@@ -1,6 +1,4 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QCheckBox, QFileDialog
-from subprocess import check_output
-import sys
+from PySide6.QtWidgets import QFileDialog
 
 
 class PlotCheck:
@@ -21,7 +19,6 @@ class PlotCheck:
 
     def SetChiaBinPath(self):
         self.chia_bin_path = QFileDialog.getOpenFileName()
-        #self.chia_bin_path = ('C:/Users/flori/Desktop/chia-blockchain/app-1.1.2/resources/app.asar.unpacked/daemon/chia.exe', 'test')
 
     def countPlot(self, type):
         self.plot_count += 1

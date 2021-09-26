@@ -1,10 +1,9 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QCheckBox, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtCore import Slot, Qt, QProcess, QFile, QIODevice, QTextStream
-from PySide6.QtGui import QColor, QIcon
+from PySide6.QtCore import Qt, QProcess, QFile, QIODevice, QTextStream
+from PySide6.QtGui import QIcon
 
 try:
-    # Include in try/except block if you're also targeting Mac/Linux
     from PySide2.QtWinExtras import QtWin
     myappid = 'lfdm.ether-source.distributed'
     QtWin.setCurrentProcessExplicitAppUserModelID(myappid)
@@ -14,8 +13,6 @@ except ImportError:
 from qt_material import QtStyleTools
 from Jinja import JinjaMaker
 from PlotCheck import PlotCheck
-import sys
-from subprocess import Popen, PIPE, STDOUT
 import logging
 import re
 from ssl import create_default_context
@@ -24,11 +21,11 @@ from datetime import datetime
 import time
 import pytz
 import yaml
-import resources
+
 
 class GuiLogger(logging.Handler):
     def emit(self, record):
-        self.edit.append_line(self.format(record))  # implementation of append_line omitted
+        self.edit.append_line(self.format(record))
 
 
 class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
@@ -61,7 +58,6 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         self.main.RunPlotCheck.clicked.connect(self.RunPlotCheck)
         self.main.ChiaBinPath.clicked.connect(self.SetChiaBinPath)
 
-
     def write_to_es(self, index, body):
         try:
             self.es.index(index=index, body=body)
@@ -73,28 +69,25 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         context = None
         fd = QFile(self.ca_path)
         if fd.open(QIODevice.ReadOnly | QFile.Text):
-                context = create_default_context(cadata=QTextStream(fd).readAll())
-                fd.close()
+            context = create_default_context(cadata=QTextStream(fd).readAll())
+            fd.close()
         self.es = Elasticsearch(
             [es_host + ":9201", es_host + ":9202", es_host + ":9203"],
             http_auth=(user, password),
             scheme="https",
             ssl_context=context,
         )
-        #print(self.es.info())
-
 
     def log_mapping(self, raw):
-#        if 'Searching' in raw and 'directories' in raw:
-#            return raw[6]
         return raw
 
     def epur_str(self, s):
         fd = QFile(':/config/config.yml')
+        cred = None
         if fd.open(QIODevice.ReadOnly | QFile.Text):
             cred = yaml.safe_load(QTextStream(fd).readAll())
 
-        self.es_connection(cred.es_username, cred.es_password, 'https://grafana.ether-source.fr')
+        self.es_connection("plot_check_user", "EvVL@f$QE8Dbv4!5", 'https://grafana.ether-source.fr')
         date_regex = r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}.\d{2}.\d{3}'
         cleaned_string = re.sub(date_regex, '', s)
         cleaned_string = cleaned_string.replace("chia.plotting.plot_tools", "")
@@ -136,10 +129,7 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
                                                 'plots_size': float(splited_log[9]),
                                                 'pseudo': self.main.Username.text(),
                                                 "@timestamp": datetime.fromtimestamp(time.time(), pytz.UTC).isoformat()})
-#            else:
-#                print(log.split(' '))
         return cleaned_string
-
 
     def message(self, s):
         s = s.replace('[32m', '')
@@ -148,10 +138,7 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         self.log_mapping(s)
         self.main.PLotCheckLogText.appendPlainText("{}".format(self.log_mapping(s)))
 
-
     def RunPlotCheck(self):
-#        if self.p is None:  # No process running.
-#            self.message("Executing process")
         self.p = QProcess()
         self.p.readyReadStandardOutput.connect(self.handle_stdout)
         self.p.readyReadStandardError.connect(self.handle_stderr)
@@ -159,7 +146,6 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         self.p.finished.connect(self.process_finished)
         self.main.GrafanaUrl.setText('https://grafana.ether-source.fr/d/oQbtWaInk/plot-check?orgId=6&var-Pseudo={}&refresh=30s'.format(self.main.Username.text()))
         self.p.start("{}".format(self.chia_bin_path[0]), ["plots", "check"])
-
 
     def handle_stderr(self):
         data = self.p.readAllStandardError()
@@ -177,8 +163,7 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
             QProcess.Starting: 'Starting',
             QProcess.Running: 'Running',
         }
-        state_name = states[state]
-#        self.message(f"State changed: {state_name}")
+        state_name = states[state
 
     def process_finished(self):
 #        self.message("Process finished.")

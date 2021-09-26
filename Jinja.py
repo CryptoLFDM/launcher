@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
-from jinja2 import Environment, FileSystemLoader, Template
-from PySide6.QtWidgets import QApplication, QMainWindow, QCheckBox, QFileDialog
+from jinja2 import Template
+from PySide6.QtWidgets import QFileDialog
 from PySide6.QtCore import Qt, QFile, QIODevice, QTextStream
 
 template_jinja = '''
