@@ -1,3 +1,3 @@
 {
-    "files": ["widget.py","PlotCheck.py","resources.py","Jinja.py","ether-source.pem","Bitcoin512-195x195.png","ressource.qrc","main.ui","config.yml"]
+    "files": ["Bitcoin512-195x195.png","main.ui","generate_ressource.ps1","config.yml","PlotCheck.py","package.ps1","ether-source.pem","widget.py","Jinja.py","ressource.qrc","ressources.py"]
 }
