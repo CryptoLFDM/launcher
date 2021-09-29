@@ -66,15 +66,9 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         try:
             self.es.index(index=index, body=body)
         except Exception as e:
-            print(e)
+            self.message(e)
 
     def es_connection(self, user, password, es_host):
-        try:
-            logging.info(es.info())
-        except Exception as e:
-            logging.error('Unable to connect to es cluster, error is {}'.format(e))
-            quit()
-
         context = None
         fd = QFile(self.ca_path)
         if fd.open(QIODevice.ReadOnly | QFile.Text):
@@ -86,6 +80,7 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
             scheme="https",
             ssl_context=context,
         )
+        self.log(self.es.info())
 
     def log_mapping(self, raw):
         return raw
@@ -170,6 +165,9 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         s = self.epur_str(s)
         self.log_mapping(s)
         self.main.PLotCheckLogText.appendPlainText("{}".format(self.log_mapping(s)))
+
+    def log(self, s):
+        self.main.PLotCheckLogText.appendPlainText("{}".format(s))
 
     def RunPlotCheck(self):
         self.p = QProcess()
