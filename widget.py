@@ -113,19 +113,22 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
             elif 'valid plots, total size' in log:
                 splited_log = log.split(' ')
                 self.write_to_es('plot_check', {'total_plot_tested_valid': splited_log[1],
-                                                'size tested_valid': splited_log[6],
+                                                'size_tested_valid': splited_log[6],
+                                                'test_final_success': True,
                                                 "@timestamp": datetime.fromtimestamp(time.time(), pytz.UTC).isoformat(),
                                                 'pseudo': self.main.Username.text()
                                                 })
             elif 'invalid plots found' in log:
                 splited_log = log.split(' ')
                 self.write_to_es('plot_check', {'total_plot_tested_invalid': splited_log[1],
+                                                'invalid_plot_found': True,
                                                 "@timestamp": datetime.fromtimestamp(time.time(), pytz.UTC).isoformat(),
                                                 'pseudo': self.main.Username.text()
                                                 })
             elif 'WARNING' in log and log.endswith(".plot"):
                 splited_log = log.split(' ')
                 self.write_to_es('plot_check', {'invalid_plot_path': splited_log[1],
+                                                'invalid_plot_found': True,
                                                 "@timestamp": datetime.fromtimestamp(time.time(), pytz.UTC).isoformat(),
                                                 'pseudo': self.main.Username.text()
                                                 })
