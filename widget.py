@@ -69,7 +69,12 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
             print(e)
 
     def es_connection(self, user, password, es_host):
-        # Connect to the elastic cluster
+        try:
+            logging.info(es.info())
+        except Exception as e:
+            logging.error('Unable to connect to es cluster, error is {}'.format(e))
+            quit()
+
         context = None
         fd = QFile(self.ca_path)
         if fd.open(QIODevice.ReadOnly | QFile.Text):
@@ -96,6 +101,7 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         cleaned_string = re.sub(date_regex, '', s)
         cleaned_string = cleaned_string.replace("chia.plotting.plot_tools", "")
         cleaned_string = cleaned_string.replace("chia.plotting.check_plots", "")
+        cleaned_string = cleaned_string.replace("chia.plotting.manager", "")
         cleaned_string = cleaned_string.replace(": INFO", "")
         cleaned_string = re.sub(' +', ' ', cleaned_string)
         log_array = cleaned_string.split('\n')
