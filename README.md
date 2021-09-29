@@ -23,6 +23,8 @@ Nous l'utilisons pour récupérer les métriques systèmes / chia / T-rex. Tout 
 
 ## Le plot check
 
+⚠️ Compatibles avec la version 1.2.2 de chia blockchain uniquement pour le moment
+
 L'onglet plot check permet donc de lancer la commande plot check (vous n'avez qu'à chercher votre executable chia pour se faire). Vous aurez le résultat en local dans le launcher, mais aussi sur Le [grafana de l'équipe LFDM](https://grafana.ether-source.fr/d/oQbtWaInk/plot-check?orgId=6&refresh=30s) est donc à cette adresse. 
 
 Pour lancer le plot check, vous avez besoin de faire deux choses :
