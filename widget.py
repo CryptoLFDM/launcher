@@ -60,6 +60,8 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         self.main.RunPlotCheck.clicked.connect(self.RunPlotCheck)
         self.main.ChiaBinPath.clicked.connect(self.SetChiaBinPath)
 
+        self.main.challengeSlider.valueChanged.connect(self.GetChallengeSliderValue)
+
     def write_to_es(self, index, body):
         try:
             self.es.index(index=index, body=body)
@@ -108,6 +110,25 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
                                                 "@timestamp": datetime.fromtimestamp(time.time(), pytz.UTC).isoformat(),
                                                 'pseudo': self.main.Username.text()
                                                 })
+            elif 'valid plots, total size' in log:
+                splited_log = log.split(' ')
+                self.write_to_es('plot_check', {'total_plot_tested_valid': splited_log[1],
+                                                'size tested_valid': splited_log[6],
+                                                "@timestamp": datetime.fromtimestamp(time.time(), pytz.UTC).isoformat(),
+                                                'pseudo': self.main.Username.text()
+                                                })
+            elif 'invalid plots found' in log:
+                splited_log = log.split(' ')
+                self.write_to_es('plot_check', {'total_plot_tested_invalid': splited_log[1],
+                                                "@timestamp": datetime.fromtimestamp(time.time(), pytz.UTC).isoformat(),
+                                                'pseudo': self.main.Username.text()
+                                                })
+            elif 'WARNING' in log and log.endswith(".plot"):
+                splited_log = log.split(' ')
+                self.write_to_es('plot_check', {'invalid_plot_path': splited_log[1],
+                                                "@timestamp": datetime.fromtimestamp(time.time(), pytz.UTC).isoformat(),
+                                                'pseudo': self.main.Username.text()
+                                                })
             elif 'Testing plot' in log:
                 splited_log = log.split(' ')
                 self.plot_tested = self.plot_tested + 1
@@ -135,6 +156,7 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
 
     def message(self, s):
         s = s.replace('[32m', '')
+        s = s.replace('[33m', '')
         s = s.replace('[0m', '')
         s = self.epur_str(s)
         self.log_mapping(s)
@@ -146,8 +168,12 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         self.p.readyReadStandardError.connect(self.handle_stderr)
         self.p.stateChanged.connect(self.handle_state)
         self.p.finished.connect(self.process_finished)
-        self.main.GrafanaUrl.setText('https://grafana.ether-source.fr/d/oQbtWaInk/plot-check?orgId=6&var-Pseudo={}&refresh=30s'.format(self.main.Username.text()))
-        self.p.start("{}".format(self.chia_bin_path[0]), ["plots", "check"])
+        self.p.start("{}".format(self.chia_bin_path[0]), ["plots", "check", "-n", "{}".format(self.challenge)])
+        self.OpenGrafanaUrl()
+
+    def GetChallengeSliderValue(self, state):
+        self.challenge = self.main.challengeSlider.value()
+        self.main.challengeLabel.setText("Nombre de challenge : {}".format(self.challenge))
 
     def handle_stderr(self):
         data = self.p.readAllStandardError()

@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QFileDialog
+import webbrowser
 
 
 class PlotCheck:
@@ -13,9 +14,14 @@ class PlotCheck:
     k35_num = 0
     ca_path = ':/cafile/ether-source.pem'
     tmp_plot_name = ''
+    challenge = 30
 
     def __init__(self):
         pass
+
+    def OpenGrafanaUrl(self):
+        grafana_url = 'https://grafana.ether-source.fr/d/oQbtWaInk/plot-check?orgId=6&var-Pseudo={}&refresh=30s'.format(self.main.Username.text())
+        webbrowser.open('{}'.format(grafana_url))
 
     def SetChiaBinPath(self):
         self.chia_bin_path = QFileDialog.getOpenFileName()

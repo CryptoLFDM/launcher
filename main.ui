@@ -26,7 +26,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="TelegrafTab">
        <attribute name="title">
@@ -328,36 +328,14 @@
         <widget class="QPlainTextEdit" name="PLotCheckLogText">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>70</x>
            <y>0</y>
-           <width>541</width>
+           <width>481</width>
            <height>241</height>
           </rect>
          </property>
          <property name="readOnly">
           <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="GrafanaUrl">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>250</y>
-           <width>541</width>
-           <height>35</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::RichText</enum>
-         </property>
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
-         <property name="textInteractionFlags">
-          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
          </property>
         </widget>
        </widget>
@@ -366,7 +344,7 @@
          <rect>
           <x>0</x>
           <y>70</y>
-          <width>271</width>
+          <width>151</width>
           <height>121</height>
          </rect>
         </property>
@@ -386,6 +364,38 @@
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QSlider" name="challengeSlider">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>90</y>
+          <width>160</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="value">
+         <number>30</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="challengeLabel">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>70</y>
+          <width>151</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Nombre de challenge : 30</string>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="APropos">
