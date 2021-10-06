@@ -86,12 +86,6 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         return raw
 
     def epur_str(self, s):
-        fd = QFile(':/config/config.yml')
-        cred = None
-        if fd.open(QIODevice.ReadOnly | QFile.Text):
-            cred = yaml.safe_load(QTextStream(fd).readAll())
-
-        self.es_connection(cred['es_username'], cred['es_password'], 'https://grafana.ether-source.fr')
         date_regex = r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}.\d{2}.\d{3}'
         cleaned_string = re.sub(date_regex, '', s)
         cleaned_string = cleaned_string.replace("chia.plotting.plot_tools", "")
@@ -170,6 +164,11 @@ class LauncherUi(QMainWindow, QtStyleTools, JinjaMaker, PlotCheck):
         self.main.PLotCheckLogText.appendPlainText("{}".format(s))
 
     def RunPlotCheck(self):
+        fd = QFile(':/config/config.yml')
+        cred = None
+        if fd.open(QIODevice.ReadOnly | QFile.Text):
+            cred = yaml.safe_load(QTextStream(fd).readAll())
+        self.es_connection(cred['es_username'], cred['es_password'], 'https://grafana.ether-source.fr')
         self.p = QProcess()
         self.p.readyReadStandardOutput.connect(self.handle_stdout)
         self.p.readyReadStandardError.connect(self.handle_stderr)
